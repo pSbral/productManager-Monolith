@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th=http://thymeleaf.org
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" th:href="@{/bootstrap-5.3.2-dist/css/bootstrap.min.css}">
+    <script th:src="@{/jquery-3.6.0-dist/jquery-3.6.0.min.js}" ></script>
+    <script th:ref="@{/bootstrap-5.3.2-dist/js/bootstrap.min.js}"></script>
+
+    <!-- para mensagens de erro-->
+    <style>
+        .mensagem {
+        color: red;
+        }
+    </style>
+
+</head>
+<body>
+    <div layout:replace="~{/fragments/navbar :: navbar}"></div>
+    <div layout:fragment="conteudo"></div>
+</body>
+</html>
