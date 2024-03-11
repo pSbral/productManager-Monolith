@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br" layout:decorate="~{template.html}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://thymeleaf.org">
+<head>
+    <title>Lista de Produtos</title>
+</head>
+<body>
+<div layout:fragment="conteudo">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>Lista de Produtos</h1>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Descrição</th>
+                        <th>Valor</th>
+                        <th>Ações</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!--Editar -->
+                    <tr th:if="${produtos.empty}">
+                        <td colspan="4">Lista de produtos vazia</td>
+                    </tr>
+                     <!--Editar -->
+                    <tr th:each="produto : ${produtos}" >
+                        <td><span th:text="${produto.nome}"> Nome </span></td>
+                        <td><span th:text="${produto.descricao}"> Descrição </span></td>
+                        <td><span th:text="${produto.valor}"> Valor </span></td>
+                        <td>
+                            <a class="btn btn-danger btn-xs"
+                            th:href="@{/produtos/deletar/{id}(id=${produto.id})}"
+                            th:data-confirm-delete="|Deseja exluir ${produto.nome}?|"
+                            onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false">
+                                Excluir</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-primary btn-xs"
+                               th:href="@{/produtos/editar/{id}(id=${produto.id})}"
+                            > Editar</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

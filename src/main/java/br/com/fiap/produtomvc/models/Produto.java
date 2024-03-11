@@ -1,6 +1,11 @@
 package br.com.fiap.produtomvc.models;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -8,24 +13,27 @@ import jakarta.validation.constraints.Size;
 
 import java.util.Objects;
 
-// Identifica que essa classe a ser modelada por um banco de dados.
-//@Table identifica a tabela que será usada para armazenar esse tipo de dado.
+// -- código omitido
 @Entity
 @Table(name = "tb_produto")
 public class Produto {
-    // @Id identifica a Primary Key, enquanto @GenaretedValue gera automaticamente um identificador.
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank(message = "Campo Requerido")
-    @Size(min = 3, message = "O nome dete ter no minimo 3 caracteres")
+
+    @NotBlank(message = "Campo requerido")
+    @Size(min = 3, message = "O nome deve ter no mínimo 3 carateres")
     private String nome;
-    @NotBlank(message = "Campo Requerido")
-    @Column(columnDefinition = "TEXT")
+
+    @NotBlank(message = "Campo requerido")
+    @Column(columnDefinition = "TEXT") //para textos longos
     private String descricao;
-    @NotNull(message = "Campo Requerido")
+
+    @NotNull(message = "Campo requerido")
     @Positive(message = "O valor deve ser positivo")
     private Double valor;
+    // -- código omitido
 
     public Produto() {
     }
@@ -41,28 +49,28 @@ public class Produto {
         return id;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public Double getValor() {
-        return valor;
-    }
-
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
     }
 
     public void setNome(String nome) {
         this.nome = nome;
     }
 
+    public String getDescricao() {
+        return descricao;
+    }
+
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public Double getValor() {
+        return valor;
     }
 
     public void setValor(Double valor) {
