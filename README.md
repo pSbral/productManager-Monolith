@@ -1,10 +1,10 @@
-<h1>Java/Maven Monolith - MVC Product Controller Project</h1>
+<h1>Product Manager | Java - Spring - Maven - JQuery</h1>
 
-This project was developed during the Fifth Semester of FIAP's System Development & Analysis graduation. It intends to accustom the alumni to develop a full-stack, front and back-end project that is capable of registering a series of products using java Objects and archiving them on a database through thymeleaf, Spring and JQuery.
-
-Thechnologies:
+Technologies:
  - Java
  - Maven
  - Spring
  - Thymeleaf
  - JQuery
+
+The projects allow the user to manage a system that can add, remove and list a series of Objects that are saved within a Database.
