@@ -34,6 +34,7 @@ public class Produto {
     @Positive(message = "O valor deve ser positivo")
     private Double valor;
     // -- código omitido
+    // Construtores, getters and setters, iquals and hashCode, toString
 
     public Produto() {
     }

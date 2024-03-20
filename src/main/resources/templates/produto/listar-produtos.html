@@ -21,26 +21,26 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <!--Editar -->
                     <tr th:if="${produtos.empty}">
                         <td colspan="4">Lista de produtos vazia</td>
                     </tr>
-                     <!--Editar -->
                     <tr th:each="produto : ${produtos}" >
                         <td><span th:text="${produto.nome}"> Nome </span></td>
                         <td><span th:text="${produto.descricao}"> Descrição </span></td>
                         <td><span th:text="${produto.valor}"> Valor </span></td>
                         <td>
-                            <a class="btn btn-danger btn-xs"
-                            th:href="@{/produtos/deletar/{id}(id=${produto.id})}"
-                            th:data-confirm-delete="|Deseja exluir ${produto.nome}?|"
-                            onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false">
-                                Excluir</a>
+                            <form th:action="@{/produtos/{id}(id=${produto.id})}" th:object="${produto}" method="post">
+                                <input type="hidden" name="_method" value="delete">
+
+                                <input class="btn btn-danger btn-xs" type="submit" value="Excluir"
+                                th:data-confirm-delete="|Deseja excluir ${produto.nome}?|"
+                                onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false">
+                            </form>
                         </td>
                         <td>
-                            <a class="btn btn-primary btn-xs"
-                               th:href="@{/produtos/editar/{id}(id=${produto.id})}"
-                            > Editar</a>
+                            <form th:action="@{/produtos/{id}(id=${produto.id})}" th:object="${produto}" method="get">
+                                <input class="btn btn-primary btn-xs" type="submit" value="Editar">
+                            </form>
                         </td>
                     </tr>
                     </tbody>

@@ -21,7 +21,7 @@
                 </div>
                 <!--  th:action - vai encaminhar para o mapeamento /usuario/salvar -->
                 <!--  th:object faz referencia ao obj -  th:object="${produto} - é o objeto enviado pelo controller - chave -->
-                <form action="#" th:action="@{/produtos/salvar}" th:object="${produto}" method="post">
+                <form action="#" th:action="@{/produtos}" th:object="${produto}" method="post">
                     <div class="row mb-3">
                         <label for="nome" class="col-sm-1 col-form-label">Nome:</label>
                         <div class="col-sm-5">
