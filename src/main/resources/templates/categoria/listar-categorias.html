@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br" layout:decorate="~{template.html}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://thymeleaf.org">
+<head>
+    <title>Lista de Categorias</title>
+</head>
+<body>
+<div layout:fragment="conteudo">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>Lista de Categorias</h1>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Ações</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:if="${categorias.empty}">
+                        <td colspan="4">Lista de categorias vazia</td>
+                    </tr>
+                    <tr th:each="categoria : ${categorias}" >
+                        <td><span th:text="${categoria.nome}"> Nome </span></td>
+                        <td>
+                            <form th:action="@{/categorias/{id}(id=${categoria.id})}" th:object="${categoria}" method="post">
+                                <input type="hidden" name="_method" value="delete">
+
+                                <input class="btn btn-danger btn-xs" type="submit" value="Excluir"
+                                th:data-confirm-delete="|Deseja excluir ${categoria.nome}?|"
+                                onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false">
+                            </form>
+                        </td>
+                        <td>
+                            <form th:action="@{/categorias/{id}(id=${categoria.id})}" th:object="${categoria}" method="get">
+                                <input class="btn btn-primary btn-xs" type="submit" value="Editar">
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
