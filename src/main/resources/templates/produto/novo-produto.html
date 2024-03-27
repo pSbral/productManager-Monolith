@@ -13,25 +13,19 @@
         <div class="row">
             <div class="col">
                 <h2>Cadastro de Produtos</h2>
-                <!--  verifica se a mensagem não é nula, se existe na requisição (chave,valor) -->
                 <div class="alert alert-success alert-dismissible fade show" th:if="${mensagem}">
                     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                     <!-- se exite a mensagem, vai mostrar aqui -->
                     <span th:text="${mensagem}"></span>
                 </div>
-                <!--  th:action - vai encaminhar para o mapeamento /usuario/salvar -->
-                <!--  th:object faz referencia ao obj -  th:object="${produto} - é o objeto enviado pelo controller - chave -->
                 <form action="#" th:action="@{/produtos}" th:object="${produto}" method="post">
                     <div class="row mb-3">
                         <label for="nome" class="col-sm-1 col-form-label">Nome:</label>
                         <div class="col-sm-5">
-                            <!--  th:field   associa input com cada campo com o atibuto do obj-->
                             <input id="nome" class="form-control" type="text" th:field="*{nome}" />
                         </div>
                         <div class="col-sm-5">
                             <span class="mensagem" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
-                            <!-- th:if="${#fields.hasErrors('nome') - associado com o controller no BindingResult result -->
-                            <!-- th:errors="*{nome} mostra o erro-->
                         </div>
                     </div>
 
@@ -42,6 +36,25 @@
                         </div>
                         <div class="col-sm-5">
                             <span class="mensagem" th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="row mb-3">
+                            <label class="col-sm-1 col-form-label">Categoria:</label>
+                            <div class="col-sm-3">
+                                <select class="chosen-select form-control" data-placehold="categoria" id="categoria"
+                                        name="categoria" th:field="*{categoria}">
+                                    <option th:each="categoria : ${categorias}"
+                                            th:text="${categoria.nome}"
+                                            th:value="${categoria.id}">
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-sm-5">
+                                <span class="mensagem" th:errors="*{categoria}"
+                                      th:if="${#fields.hasErrors('categoria')}"></span>
+                            </div>
                         </div>
                     </div>
 

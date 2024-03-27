@@ -1,6 +1,8 @@
 package br.com.fiap.produtomvc.controllers;
 
+import br.com.fiap.produtomvc.models.Categoria;
 import br.com.fiap.produtomvc.models.Produto;
+import br.com.fiap.produtomvc.repository.CategoriaRepository;
 import br.com.fiap.produtomvc.repository.ProdutoRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
+
 // -- código omitido
 //URL - localhost:8080/produtos
 @Controller
@@ -19,7 +23,14 @@ public class ProdutoController {
     @Autowired
     private ProdutoRepository repository;
 
-    //URL - localhost:8080/produtos/novo
+    @Autowired
+    private CategoriaRepository categoriaRepository;
+
+    @ModelAttribute("categorias")
+    public List<Categoria> categorias(){
+        return categoriaRepository.findAll();
+    }
+
     @GetMapping("/form")
     public String loadForm(Model model) {
         model.addAttribute("produto", new Produto());

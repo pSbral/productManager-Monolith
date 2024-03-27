@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br" layout:decorate="~{template.html}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://thymeleaf.org">
+
+<head>
+    <title>Cadastro de Categoria</title>
+</head>
+
+<body>
+<div layout:fragment="conteudo">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h2>Cadastro de Categoria</h2>
+                <div class="alert alert-success alert-dismissible fade show" th:if="${mensagem}">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    <!-- se exite a mensagem, vai mostrar aqui -->
+                    <span th:text="${mensagem}"></span>
+                </div>
+                <form action="#" th:action="@{/categorias}" th:object="${categoria}" method="post">
+                    <div class="row mb-3">
+                        <label for="nome" class="col-sm-1 col-form-label">Nome:</label>
+                        <div class="col-sm-5">
+                            <input id="nome" class="form-control" type="text" th:field="*{nome}" />
+                        </div>
+                        <div class="col-sm-5">
+                            <span class="mensagem" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+                        </div>
+                    </div>
+
+                    <input class="btn btn-primary" type="submit" value="Salvar" />
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+

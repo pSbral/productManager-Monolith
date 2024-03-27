@@ -16,6 +16,7 @@
                     <tr>
                         <th>Nome</th>
                         <th>Descrição</th>
+                        <th>Categoria</th>
                         <th>Valor</th>
                         <th>Ações</th>
                     </tr>
@@ -27,6 +28,7 @@
                     <tr th:each="produto : ${produtos}" >
                         <td><span th:text="${produto.nome}"> Nome </span></td>
                         <td><span th:text="${produto.descricao}"> Descrição </span></td>
+                        <td><span th:text="${produto.categoria.nome}"> Categoria </span></td>
                         <td><span th:text="${produto.valor}"> Valor </span></td>
                         <td>
                             <form th:action="@{/produtos/{id}(id=${produto.id})}" th:object="${produto}" method="post">
